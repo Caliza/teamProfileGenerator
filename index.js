@@ -1,7 +1,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const employeeArray = [];
 
-const generateHTML = ({ name, position, github, email }) =>
+const generateHTML = (employeeArr) =>
     `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,13 +14,42 @@ const generateHTML = ({ name, position, github, email }) =>
 <body>
   <header class="p-5 mb-4 header bg-light">
     <div class="container">
-      <h1 class="display-4">Hi! My name is ${name}</h1>
-      <p class="lead">I am from ${position}.</p>
+    ${employeeArr.map(employee => {
+      if (employee.getRole() == 'Manager') {
+        return `
+        <h1 class="display-4">Hi! My name is ${employee.name}</h1>
+      <p class="lead">I am from ${employee.getRole()}.</p>
       <h3>Example heading <span class="badge bg-secondary">Contact Me</span></h3>
       <ul class="list-group">
-        <li class="list-group-item">My GitHub username is: ${github}</li>
-        <li class="list-group-item">Email: ${email}</li>
+        <li class="list-group-item">My GitHub username is: ${employee.officeNumber}</li>
+        <li class="list-group-item">Email: ${employee.email}</li>
       </ul>
+        `
+      }
+      else if (employee.getRole() == 'Manager') {
+        return `
+        <h1 class="display-4">Hi! My name is ${employee.name}</h1>
+      <p class="lead">I am from ${employee.getRole()}.</p>
+      <h3>Example heading <span class="badge bg-secondary">Contact Me</span></h3>
+      <ul class="list-group">
+        <li class="list-group-item">My GitHub username is: ${employee.officeNumber}</li>
+        <li class="list-group-item">Email: ${employee.email}</li>
+      </ul>
+        `
+      }
+      else if (employee.getRole() == 'Manager') {
+        return `
+        <h1 class="display-4">Hi! My name is ${employee.name}</h1>
+      <p class="lead">I am from ${employee.getRole()}.</p>
+      <h3>Example heading <span class="badge bg-secondary">Contact Me</span></h3>
+      <ul class="list-group">
+        <li class="list-group-item">My GitHub username is: ${employee.officeNumber}</li>
+        <li class="list-group-item">Email: ${employee.email}</li>
+      </ul>
+        `
+      }
+    })}
+      
     </div>
   </header>
 </body>
