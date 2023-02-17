@@ -55,10 +55,13 @@ const generateHTML = (employeeArr) =>
 </body>
 </html>`;
 
+// function name() {
+    
+
 inquirer
     .prompt([
         {
-            type: 'input',
+            type: 'list',
             name: 'name',
             message: 'Team member name?',
         },
@@ -83,10 +86,13 @@ inquirer
             message: 'Team member email?',
         },
     ])
-    then((answers) => {
-        const htmlPageContent = generateHTML(answers);
-
+    .then((answers) => {
+        console.log(answers);
+        employeeArray.push(answers)
+        const htmlPageContent = generateHTML(employeeArray);
+      console.log(answers);
         fs.writeFile('index.html', htmlPageContent, (err) =>
       err ? console.log(err) : console.log('Successfully created index.html!')
     );
   });
+``
