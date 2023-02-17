@@ -96,30 +96,45 @@ inquirer
       answers.id,
       answers.email,
       answers.github
-    ); fs.writeFile('index.html', htmlPageContent, (err) =>
-      err ? console.log(err) : console.log('Successfully created index.html!')
-    );
-  })
+     ); const input = employeeArray.push(manager);
+     console.log(input);
+  })   
   .then((answers) => {
     const engineer = new Engineer(
       answers.name,
       answers.id,
       answers.email,
       answers.github
-    ); fs.writeFile('index.html', htmlPageContent, (err) =>
-      err ? console.log(err) : console.log('Successfully created index.html!')
-    );
-  })
-  .then((answers) => {
-    const intern = new Intern(
-      answers.name,
-      answers.id,
-      answers.email,
-      answers.github
-    ); fs.writeFile('index.html', htmlPageContent, (err) =>
-      err ? console.log(err) : console.log('Successfully created index.html!')
-    );
-  })
+     ); const input = employeeArray.push(engineer);
+     console.log(input);
+  });  
+    //  const input = employeeArray.push(manager);
+    //  console.log(input);
+     //; fs.writeFile('index.html', employeeArray, (err) =>
+    //   err ? console.log(err) : console.log('Successfully created index.html!')
+    // );
+  
+  // .then((answers) => {
+  //   const engineer = new Engineer(
+  //     answers.name,
+  //     answers.id,
+  //     answers.email,
+  //     answers.github
+  //    );
+  //    }) //fs.writeFile('index.html', htmlPageContent, (err) =>
+  //     err ? console.log(err) : console.log('Successfully created index.html!')
+  //   );
+  // })
+  // .then((answers) => {
+  //   const intern = new Intern(
+  //     answers.name,
+  //     answers.id,
+  //     answers.email,
+  //     answers.github
+  //   ); fs.writeFile('index.html', htmlPageContent, (err) =>
+  //     err ? console.log(err) : console.log('Successfully created index.html!')
+  //   );
+  // })
     // .then((answers) => {
     //     console.log(answers);
     //     employeeArray.push(answers)
