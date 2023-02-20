@@ -59,9 +59,6 @@ const generateHTML = (employeeArr) =>
 </body>
 </html>`;
 
-// function name() {
-
-
 inquirer
   .prompt([
     {
@@ -70,9 +67,10 @@ inquirer
       message: 'Team member name?',
     },
     {
-      type: 'input',
+      type: 'list',
       name: 'position',
       message: 'Team member position?',
+      choices: ['Manager', 'Engineer', 'Intern'],
     },
     {
       type: 'input',
@@ -83,31 +81,62 @@ inquirer
       type: 'input',
       name: 'github',
       message: 'Enter GitHub Username',
+      when: (answers) => answers.position === 'Engineer',
+    },
+    {
+      type: 'input',
+      name: 'school',
+      message: 'Enter school name',
+      when: (answers) => answers.position === 'Intern',
+    },
+    {
+      type: 'input',
+      name: 'officeNumber',
+      message: 'Enter office number',
+      when: (answers) => answers.position === 'Manager',
     },
     {
       type: 'input',
       name: 'email',
       message: 'Team member email?',
     },
+    {
+      type: 'list',
+      name: 'yes/no',
+      message: 'Do you want to add another team member?',
+      choices: ['Yes', 'No'],
+    },
   ])
   .then((answers) => {
-    const manager = new Manager(
-      answers.name,
-      answers.id,
-      answers.email,
-      answers.github
-     ); const input = employeeArray.push(manager);
-     console.log(input);
-  })   
-  .then((answers) => {
-    const engineer = new Engineer(
-      answers.name,
-      answers.id,
-      answers.email,
-      answers.github
-     ); const input = employeeArray.push(engineer);
-     console.log(input);
-  });  
+    if (answers.position === 'Manager') {
+      const manager = new Manager(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.officeNumber
+      );
+      employeeArray.push(manager);
+    } else if (answers.position === 'Engineer') {
+      const engineer = new Engineer(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.github
+      );
+      employeeArray.push(engineer);
+    } else if (answers.position === 'Intern') {
+      const intern = new Intern(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.school
+      );
+      employeeArray.push(intern);
+    }
+  });
+
+
+
     //  const input = employeeArray.push(manager);
     //  console.log(input);
      //; fs.writeFile('index.html', employeeArray, (err) =>
@@ -125,22 +154,4 @@ inquirer
   //     err ? console.log(err) : console.log('Successfully created index.html!')
   //   );
   // })
-  // .then((answers) => {
-  //   const intern = new Intern(
-  //     answers.name,
-  //     answers.id,
-  //     answers.email,
-  //     answers.github
-  //   ); fs.writeFile('index.html', htmlPageContent, (err) =>
-  //     err ? console.log(err) : console.log('Successfully created index.html!')
-  //   );
-  // })
-    // .then((answers) => {
-    //     console.log(answers);
-    //     employeeArray.push(answers)
-    //     const htmlPageContent = generateHTML(employeeArray);
-    //     console.log(answers);
-    //     fs.writeFile('index.html', htmlPageContent, (err) =>
-    //         err ? console.log(err) : console.log('Successfully created index.html!')
-    //     );
-    // });
+  
