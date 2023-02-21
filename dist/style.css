@@ -1,0 +1,10 @@
+.teamCards {
+    flex-basis: 50%;
+    flex-wrap: wrap;
+}
+
+.eachCard {
+    border: 2px solid #2d394a;
+    border-radius: 8px;
+    width: 35vw;
+}

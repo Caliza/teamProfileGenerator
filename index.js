@@ -1,65 +1,14 @@
 const inquirer = require('inquirer');
+const generateHTML = require('./src/generateHTML')
 const fs = require('fs');
-const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const { run } = require('jest');
+const path = require('path')
+// const { run } = require('jest');
 const employeeArray = [];
 
-const generateHTML = (employeeArr) =>
-    `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-  <title>Document</title>
-</head>
-<header class="display-1 text-center bg-info">Team Roster</header>
-<body>
-  <header class="p-5 mb-4 header bg-light">
-    <div class="container">
-    ${employeeArr.map(employee => {
-        if (employee.getRole() == 'Manager') {
-            return `
-        <h1 class="display-4 lead">My name is ${employee.name}</h1>
-      <p class="display-6">I am a ${employee.getRole()}.</p>
-      <h3><span class="badge bg-secondary">Contact Me</span></h3>
-      <ul class="list-group">
-        <li class="list-group-item">My office number is: ${employee.officeNumber}</li>
-        <li class="list-group-item">Email: ${employee.email}</li>
-      </ul>
-        `
-        }
-        else if (employee.getRole() == 'Engineer') {
-            return `
-        <h1 class="display-4 lead">My name is ${employee.name}</h1>
-      <p class="display-6">I am an ${employee.getRole()}.</p>
-      <h3><span class="badge bg-secondary">Contact Me</span></h3>
-      <ul class="list-group">
-        <li class="list-group-item">My GitHub username is: ${employee.github}</li>
-        <li class="list-group-item">Email: ${employee.email}</li>
-      </ul>
-        `
-        }
-        else if (employee.getRole() == 'Intern') {
-            return `
-        <h1 class="display-4 lead">My name is ${employee.name}</h1>
-      <p class="display-6">I am an ${employee.getRole()}.</p>
-      <h3><span class="badge bg-secondary">Contact Me</span></h3>
-      <ul class="list-group">
-        <li class="list-group-item">My univercity is: ${employee.school}</li>
-        <li class="list-group-item">Email: ${employee.email}</li>
-      </ul>
-        `
-        }
-    })}
-      
-    </div>
-  </header>
-</body>
-</html>`;
+
 function init() {
     inquirer.prompt([
         {
@@ -133,36 +82,33 @@ function init() {
 }
 
 function addAnother() {
-    inquirer.prompt([
-        {
-            type: 'list',
-            name: 'choice',
-            message: 'Do you want to add another team member?',
-            choices: ['Yes', 'No'],
-        }
-    ]).then((answer) => {
-        if (answer.choice === "Yes") {
-            init();
-        } else {
-            console.log("Team has been made");
-            console.log('beta1', employeeArray);
-        }
-    }).then((answers) => {
-        const htmlPageContent = generateHTML(employeeArray);
-
-        fs.writeFile('index.html', htmlPageContent, (err) =>
-            err ? console.log(err) : console.log('Successfully created index.html!')
-        );
-    });
+  inquirer.prompt([
+      {
+          type: 'list',
+          name: 'choice',
+          message: 'Do you want to add another team member?',
+          choices: ['Yes', 'No'],
+      }
+  ]).then((answer) => {
+      if (answer.choice === "Yes") {
+          init();
+      } else {
+          writeToFile();
+      }
+  })
 }
+
+
+function writeToFile() {
+   const htmlPageContent = generateHTML(employeeArray);
+
+      fs.writeFile(path.join(process.cwd(), '/dist', 'index.html'), htmlPageContent, (err) =>
+          err ? console.log(err) : console.log('Successfully created index.html!')
+      );
+  }
 
 init();
 
 
 
-    //  const input = employeeArray.push(manager);
-    //  console.log(input);
-     //; fs.writeFile('index.html', employeeArray, (err) =>
-    //   err ? console.log(err) : console.log('Successfully created index.html!')
-    // );
-
+  
