@@ -4,6 +4,7 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const { run } = require('jest');
 const employeeArray = [];
 
 const generateHTML = (employeeArr) =>
@@ -58,7 +59,7 @@ const generateHTML = (employeeArr) =>
   </header>
 </body>
 </html>`;
-
+function init(){
 inquirer
   .prompt([
     {
@@ -100,12 +101,6 @@ inquirer
       name: 'email',
       message: 'Team member email?',
     },
-    {
-      type: 'list',
-      name: 'yes/no',
-      message: 'Do you want to add another team member?',
-      choices: ['Yes', 'No'],
-    },
   ])
   .then((answers) => {
     if (answers.position === 'Manager') {
@@ -133,7 +128,30 @@ inquirer
       );
       employeeArray.push(intern);
     }
+    console.log('beta0', employeeArray);
+    addAnother();
   });
+}
+
+function addAnother() {
+  inquirer.prompt([
+    {
+      type: 'list',
+      name: 'choice',
+      message: 'Do you want to add another team member?',
+      choices: ['Yes', 'No'],
+    }
+  ]).then((answer) => {
+    if(answer.choice === "Yes"){
+      init();
+    }else{
+      console.log("Team has been made");
+      console.log('beta1', employeeArray);
+    } 
+  })
+}
+
+init();
 
 
 
@@ -143,15 +161,4 @@ inquirer
     //   err ? console.log(err) : console.log('Successfully created index.html!')
     // );
   
-  // .then((answers) => {
-  //   const engineer = new Engineer(
-  //     answers.name,
-  //     answers.id,
-  //     answers.email,
-  //     answers.github
-  //    );
-  //    }) //fs.writeFile('index.html', htmlPageContent, (err) =>
-  //     err ? console.log(err) : console.log('Successfully created index.html!')
-  //   );
-  // })
   
