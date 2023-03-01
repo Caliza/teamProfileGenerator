@@ -22,7 +22,7 @@ const generateHTML = (employeeArr) =>
       <h3><span class="badge bg-secondary">Contact Me</span></h3>
       <ul class="list-group">
         <li class="list-group-item">My office number is: ${employee.getOfficeNumber()}</li>
-        <li class="list-group-item">Email: ${employee.getEmail()}</li>
+        <li class="list-group-item">Email: <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a></li>
       </ul>
       </div>
         `
@@ -34,8 +34,8 @@ const generateHTML = (employeeArr) =>
       <p class="display-6">I am an ${employee.getRole()}.</p>
       <h3><span class="badge bg-secondary">Contact Me</span></h3>
       <ul class="list-group">
-        <li class="list-group-item">My GitHub username is: ${employee.getGithub()}</li>
-        <li class="list-group-item">Email: ${employee.getEmail()}</li>
+        <li class="list-group-item">My GitHub username is: <a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}</a></li>
+        <li class="list-group-item">Email: <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a></li>
       </ul>
       </div>
         `
@@ -48,7 +48,7 @@ const generateHTML = (employeeArr) =>
       <h3><span class="badge bg-secondary">Contact Me</span></h3>
       <ul class="list-group">
         <li class="list-group-item">My univercity is: ${employee.getSchool()}</li>
-        <li class="list-group-item">Email: ${employee.getEmail()}</li>
+        <li class="list-group-item">Email: <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a></li>
       </ul>
       </div>
         `
@@ -61,3 +61,5 @@ const generateHTML = (employeeArr) =>
 </html>`;
 
 module.exports = generateHTML
+
+
