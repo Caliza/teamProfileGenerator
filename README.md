@@ -38,8 +38,8 @@
 ## Links
 
 - GitHub: https://github.com/Caliza/teamProfileGenerator
-- Google Drive: https://drive.google.com/file/d/1ztualfKxF0Kfcq7YBD4f4sBEFsm5iJf0/view?usp=share_link
-- Castify: https://watch.screencastify.com/v/DbiA9lBoBd3ZyAYT9Qa9
+- Google Drive: https://drive.google.com/file/d/1ALz30f3SrgSaZBSmH7cDouA3KW2eJBVD/view?usp=share_link
+- Castify: https://watch.screencastify.com/v/fD59smaSSiK2HDfxPrfA
 
 ## Questions
 
